@@ -1,8 +1,14 @@
 import pytz
 import datetime
 
+
 class Account:
     """ Simple account class with balance """
+
+    @staticmethod
+    def _current_time():
+        utc_time = datetime.datetime.utcnow()
+        return pytz.utc.localize(utc_time)
 
     def __init__(self, name, balance):
         self.name = name
@@ -14,7 +20,7 @@ class Account:
         if amount > 0:
             self.balance += amount
             self.show_balance()
-            self.transaction_list.append(pytz.utc.localize(datetime.datetime.utcnow(), amount))
+            self.transaction_list.append((pytz.utc.localize(datetime.datetime.utcnow()), amount))
 
     def withdraw(self, amount):
         if 0 < amount <= self.balance:
@@ -29,7 +35,7 @@ class Account:
     def show_transactions(self):
         for date, amount in self.transaction_list:
             if amount > 0:
-                tran_type = "deposted"
+                tran_type = "deposited"
             else:
                 tran_type = "withdrawn"
                 amount *= -1
@@ -45,3 +51,5 @@ if __name__ == '__main__':
     tim.withdraw(500)
     tim.withdraw(50000)
     # tim.show_balance()
+
+    tim.show_transactions()
