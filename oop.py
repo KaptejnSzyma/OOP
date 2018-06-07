@@ -39,6 +39,10 @@ print(kenwood.power)
 # print(hamilton.power)
 print("Switch to atomic power")
 Kettle.power_source = "atomic"
+
+print("Switch kenwood to gas")
+kenwood.power_source = "gas"
+
 print(Kettle.power_source)
 print(kenwood.power_source)
 print(hamilton.power_source)
