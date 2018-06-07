@@ -1,5 +1,7 @@
 class Kettle(object):
 
+    power_source = "electricity"
+
     def __init__(self, make, price):
         self.make = make
         self.price = price
@@ -34,4 +36,7 @@ print("="*80)
 
 kenwood.power = 1.5
 print(kenwood.power)
-print(hamilton.power)
+# print(hamilton.power)
+print(Kettle.power_source)
+print(kenwood.power_source)
+print(hamilton.power_source)
