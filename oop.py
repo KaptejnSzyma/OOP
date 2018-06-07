@@ -29,3 +29,9 @@ print(hamilton.on)
 
 Kettle.switch_on(kenwood)
 print(kenwood.on)
+
+print("="*80)
+
+kenwood.power = 1.5
+print(kenwood.power)
+print(hamilton.power)
