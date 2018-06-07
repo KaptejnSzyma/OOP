@@ -14,3 +14,5 @@ kenwood.price = 12.75
 print(kenwood.price)
 
 hamilton = Kettle("Hamilton", 14.55)
+
+print("Models: {} = {}, {} = {}".format(kenwood.make, kenwood.price, hamilton.make, hamilton.price))
