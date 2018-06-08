@@ -21,4 +21,6 @@ class Song:
         self.duration = duration
 
 
-help(Song.__init__)
+# help(Song.__init__)
+print(Song.__doc__)
+print(Song.__init__.__doc__)
