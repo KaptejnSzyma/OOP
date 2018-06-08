@@ -63,3 +63,5 @@ if __name__ == '__main__':
     steph.show_transactions()
     steph.show_balance()
     print(steph.__dict__)
+    steph._Account__balance = 40
+    steph.show_balance()
