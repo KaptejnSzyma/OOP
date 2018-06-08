@@ -6,6 +6,7 @@ class Song:
         artist (Artist): An artist object representing the song's creator
         duration (int): The duration of the song in seconds. May be zero
     """
+
     def __init__(self, title, artist, duration):
         """Song init method
 
@@ -18,3 +19,6 @@ class Song:
         self.title = title
         self.artist = artist
         self.duration = duration
+
+
+help(Song.__init__)
