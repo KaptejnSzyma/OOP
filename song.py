@@ -46,7 +46,7 @@ class Album:
         """Adds a song to the track list
 
         Args:
-            song(Song): The title of a song to add.
+            song(str): The title of a song to add.
             position(Optional[int]): If specified, the song will be added to that position
                 in the track list - inserting it between other songs if necessary.
                 Otherwise, the song will be added to the end of a list
