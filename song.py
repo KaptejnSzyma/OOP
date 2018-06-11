@@ -7,7 +7,7 @@ class Song:
         duration (int): The duration of the song in seconds. May be zero
     """
 
-    def __init__(self, title, artist, duration):
+    def __init__(self, title, artist, duration=0):
         self.title = title
         self.artist = artist
         self.duration = duration
@@ -82,7 +82,7 @@ class Artist:
 
 def load_data():
     new_artist = None
-    new_album =  None
+    new_album = None
     artist_list = []
 
     with open("albums.txt", "r") as albums:
@@ -90,7 +90,29 @@ def load_data():
             # data row should consist of (artist, album, year, song)
             artist_field, album_field, year_field, song_field = tuple(line.strip('\n').split('\t'))
             year_field = int(year_field)
-            print(artist_field, album_field, year_field, song_field)
+            print("{}:{}:{}:{}".format(artist_field, album_field, year_field, song_field))
+
+            if new_artist is None:
+                new_artist = Artist(artist_field)
+            elif new_artist.name != artist_field:
+                # We've just read details for a new artist
+                # store the current album in the currents artists collection then create a new artist object
+                new_artist.add_album(new_album)
+                artist_list.append(new_artist)
+                new_artist = Artist(artist_field)
+                new_album = None
+
+            if new_album is None:
+                new_album = Album(album_field, year_field, new_artist)
+            elif new_album.name != album_field:
+                # We've just read a new album for the current artist
+                # store the current album in the artist's collection then create a new album object
+                new_artist.add_album(new_album)
+                new_album = Album(album_field, year_field, new_artist)
+
+            # create a new song object and add it to the current album's collection
+            new_song = Song(song_field, new_artist)
+            new_album.add_song(new_song)
 
 
 if __name__ == '__main__':
