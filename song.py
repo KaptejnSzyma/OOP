@@ -116,12 +116,14 @@ def load_data():
 
         # After reading the last line of the text file, we will have an and album that haven't
         # been stored - process them now
-            if new_artist is not None:
-                if new_album is not None:
-                    new_artist.add_album(new_album)
-                artist_list.append(new_artist)
+        if new_artist is not None:
+            if new_album is not None:
+                new_artist.add_album(new_album)
+            artist_list.append(new_artist)
+
     return artist_list
 
 
 if __name__ == '__main__':
-    load_data()
+    artists = load_data()
+    print("There are {} artists".format(len(artists)))
