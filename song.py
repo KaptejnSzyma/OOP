@@ -115,22 +115,18 @@ def load_data():
 
             if new_album is None:
                 new_album = Album(album_field, year_field, new_artist)
+                new_artist.add_album(new_album)
             elif new_album.name != album_field:
                 # We've just read a new album for the current artist
-                # store the current album in the artist's collection then create a new album object
-                new_artist.add_album(new_album)
-                new_album = Album(album_field, year_field, new_artist)
-
+                # retrieve the album object if there is one,
+                # otherwise create a new album object and add it to the artist list
+                new_album = find_object(album_field, new_album.albums).add_album(new_album)
+                if new_album is None:
+                    new_album = Album(album_field, year_field, new_artist)
+                    new_artist.add_album(new_album)
             # create a new song object and add it to the current album's collection
             new_song = Song(song_field, new_artist)
             new_album.add_song(new_song)
-
-        # After reading the last line of the text file, we will have an and album that haven't
-        # been stored - process them now
-        if new_artist is not None:
-            if new_album is not None:
-                new_artist.add_album(new_album)
-            artist_list.append(new_artist)
 
     return artist_list
 
